@@ -3,6 +3,9 @@ package com.example.todolist_javafx_study;
 import com.example.todolist_javafx_study.datamodel.ToDoItem;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -12,6 +15,10 @@ import java.util.List;
 public class HelloController {
 
     private List<ToDoItem> toDoItems;
+    @FXML
+    private ListView<ToDoItem> toDoListView;
+    @FXML
+    private TextArea itemDetailsTextArea;
 
     public void initialize(){
         ToDoItem item1 = new ToDoItem("Mail birthday card",
@@ -31,5 +38,19 @@ public class HelloController {
         toDoItems.add(item3);
         toDoItems.add(item4);
         toDoItems.add(item5);
+
+        toDoListView.getItems().setAll(toDoItems);
+        toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+    }
+
+    @FXML
+    public void handleClickListView(){
+        ToDoItem item = toDoListView.getSelectionModel().getSelectedItem();
+        //System.out.println("The selected item is: " + item);
+        StringBuilder sb = new StringBuilder(item.getDetails());
+        sb.append("\n\n\n\n");
+        sb.append("Due: ");
+        sb.append(item.getDeadline().toString());
+        itemDetailsTextArea.setText(sb.toString());
     }
 }
