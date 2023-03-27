@@ -1,6 +1,8 @@
 package com.example.todolist_javafx_study;
 
 import com.example.todolist_javafx_study.datamodel.ToDoItem;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -19,6 +21,8 @@ public class HelloController {
     private ListView<ToDoItem> toDoListView;
     @FXML
     private TextArea itemDetailsTextArea;
+    @FXML
+    private Label deadlineLabel;
 
     public void initialize(){
         ToDoItem item1 = new ToDoItem("Mail birthday card",
@@ -39,18 +43,32 @@ public class HelloController {
         toDoItems.add(item4);
         toDoItems.add(item5);
 
+        toDoListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ToDoItem>() {
+            @Override
+            public void changed(ObservableValue<? extends ToDoItem> observableValue, ToDoItem toDoItem, ToDoItem t1) {
+                if(t1 != null){
+                    ToDoItem item = toDoListView.getSelectionModel().getSelectedItem();
+                    itemDetailsTextArea.setText(item.getDetails());
+                    deadlineLabel.setText(item.getDeadline().toString());
+                }
+            }
+        });
+
         toDoListView.getItems().setAll(toDoItems);
         toDoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        toDoListView.getSelectionModel().selectFirst();
     }
 
     @FXML
     public void handleClickListView(){
         ToDoItem item = toDoListView.getSelectionModel().getSelectedItem();
-        //System.out.println("The selected item is: " + item);
-        StringBuilder sb = new StringBuilder(item.getDetails());
-        sb.append("\n\n\n\n");
-        sb.append("Due: ");
-        sb.append(item.getDeadline().toString());
-        itemDetailsTextArea.setText(sb.toString());
+        itemDetailsTextArea.setText(item.getDetails());
+        deadlineLabel.setText(item.getDeadline().toString());
+//        System.out.println("The selected item is: " + item);
+//        StringBuilder sb = new StringBuilder(item.getDetails());
+//        sb.append("\n\n\n\n");
+//        sb.append("Due: ");
+//        sb.append(item.getDeadline().toString());
+//        itemDetailsTextArea.setText(sb.toString());
     }
 }
