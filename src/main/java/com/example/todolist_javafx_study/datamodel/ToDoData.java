@@ -31,6 +31,10 @@ public class ToDoData {//This is a Singleton class, which is a class with a sing
     public List<ToDoItem> getToDoItems() {
         return toDoItems;
     }
+    public void addToDoItem(ToDoItem item){
+        toDoItems.add(item);
+
+    }
 
     public void loadToDoItems() throws IOException{
         toDoItems = FXCollections.observableArrayList();
@@ -58,12 +62,12 @@ public class ToDoData {//This is a Singleton class, which is a class with a sing
         }
     }
 
-    public void storeToDoItems() throws IOException{
+    public void storeToDoItems() throws IOException {
         Path path = Paths.get(filename);
         BufferedWriter bw = Files.newBufferedWriter(path);
-        try{
+        try {
             Iterator<ToDoItem> iter = toDoItems.iterator();
-            while(iter.hasNext()){
+            while (iter.hasNext()) {
                 ToDoItem item = iter.next();
                 bw.write(String.format("%s\t%s\t%s",
                         item.getShortDescription(),
@@ -71,8 +75,8 @@ public class ToDoData {//This is a Singleton class, which is a class with a sing
                         item.getDeadline().format(formatter)));
                 bw.newLine();
             }
-        }finally{
-            if(bw != null){
+        } finally {
+            if (bw != null) {
                 bw.close();
             }
         }
