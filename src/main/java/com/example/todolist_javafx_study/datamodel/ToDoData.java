@@ -32,10 +32,6 @@ public class ToDoData {//This is a Singleton class, which is a class with a sing
         return toDoItems;
     }
 
-    public void setToDoItems(List<ToDoItem> toDoItems) {
-        this.toDoItems = toDoItems;
-    }
-
     public void loadToDoItems() throws IOException{
         toDoItems = FXCollections.observableArrayList();
         Path path = Paths.get(filename);
@@ -71,7 +67,7 @@ public class ToDoData {//This is a Singleton class, which is a class with a sing
                 ToDoItem item = iter.next();
                 bw.write(String.format("%s\t%s\t%s",
                         item.getShortDescription(),
-                        item.getDeadline(),
+                        item.getDetails(),
                         item.getDeadline().format(formatter)));
                 bw.newLine();
             }
