@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.todolist_javafx_study/com.example.todolist_javafx_study.HelloApplication
+                                com.example.todolist_javafx_study/com.example.todolist_javafx_study.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
