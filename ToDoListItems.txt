@@ -3,3 +3,6 @@ Doctor's Appointment	See Dr. Smith at 123 Main Street. Bring paperwork	26-03-202
 Finish design proposal for client	I promised Mike I'd email website mockups by Friday 22nd April	22-04-2023
 Pickup Doug at the train station	Doug's arriving on March 23 on the 5:00 train	23-03-2023
 Pickup dry cleaning	The clothes should be ready by Wednesday	20-04-2023
+My new ToDo Item	This is a new ToDo Item	01-04-2023
+Alex's item	This is a test	02-04-2023
+New Item	This is another test	03-04-2023
